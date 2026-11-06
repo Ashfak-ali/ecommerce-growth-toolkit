@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Growth & Unit Economics Toolkit | Open Source</title>
+  <meta name="description" content="Open-source interactive growth calculators, ROAS estimators, break-even unit economics, inventory reorder point engines, and SKU generators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <i class="fa-solid fa-chart-line text-purple"></i>
+        <span>E-Com<span class="text-purple">Growth</span> Toolkit</span>
+      </div>
+      <div class="header-links">
+        <a href="https://ashfak.ka36.in/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-user"></i> Ashfak Ali</a>
+        <a href="https://github.com/Ashfak-ali/ecommerce-growth-toolkit" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> Star on GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="hero text-center">
+      <span class="badge"><i class="fa-solid fa-bolt"></i> Production-Grade E-Commerce Math</span>
+      <h1>Unit Economics & Growth <span class="gradient-text">Calculators</span></h1>
+      <p>Precision decision engines for D2C founders, media buyers, inventory planners, and e-commerce operators.</p>
+    </div>
+
+    <div class="tools-grid">
+      <!-- 1. ROAS Calculator -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-calculator card-icon"></i>
+          <div>
+            <h3>Ads ROAS & Revenue Forecaster</h3>
+            <p>Meta, Google & TikTok Ads returns</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Monthly Ad Spend ($ / ₹)</label>
+          <input type="number" id="roas-spend" value="5000" oninput="calcROAS()">
+        </div>
+        <div class="form-group">
+          <label>Target ROAS Multiple (e.g. 3.5x)</label>
+          <input type="number" id="roas-mult" value="3.8" step="0.1" oninput="calcROAS()">
+        </div>
+        <div class="result-box">
+          <span class="res-label">Projected Revenue</span>
+          <span class="res-val" id="roas-rev">$19,000</span>
+          <span class="res-sub" id="roas-profit">Estimated Net: +$14,000</span>
+        </div>
+      </div>
+
+      <!-- 2. Break-Even ROAS Target -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-scale-balanced card-icon"></i>
+          <div>
+            <h3>Break-Even ROAS Target</h3>
+            <p>Minimum ROAS threshold for zero-loss</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Retail Selling Price</label>
+          <input type="number" id="be-price" value="80" oninput="calcBreakEven()">
+        </div>
+        <div class="form-group">
+          <label>COGS + Shipping + Pick/Pack Fee</label>
+          <input type="number" id="be-cogs" value="30" oninput="calcBreakEven()">
+        </div>
+        <div class="result-box">
+          <span class="res-label">Minimum Required ROAS</span>
+          <span class="res-val" id="be-roas">1.60x</span>
+          <span class="res-sub" id="be-margin">Gross Margin: 62.5%</span>
+        </div>
+      </div>
+
+      <!-- 3. CRO Uplift Estimator -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-arrow-trend-up card-icon"></i>
+          <div>
+            <h3>CRO Revenue Uplift Engine</h3>
+            <p>Dollar impact of conversion improvements</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Monthly Store Visitors</label>
+          <input type="number" id="cro-traffic" value="35000" oninput="calcCRO()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Current CVR (%)</label>
+            <input type="number" id="cro-cur" value="1.8" step="0.1" oninput="calcCRO()">
+          </div>
+          <div class="form-group">
+            <label>Target CVR (%)</label>
+            <input type="number" id="cro-target" value="2.6" step="0.1" oninput="calcCRO()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Average Order Value (AOV)</label>
+          <input type="number" id="cro-aov" value="65" oninput="calcCRO()">
+        </div>
+        <div class="result-box">
+          <span class="res-label">Additional Monthly Revenue</span>
+          <span class="res-val text-green" id="cro-extra">+$18,200</span>
+          <span class="res-sub" id="cro-total">New Monthly Gross: $59,150</span>
+        </div>
+      </div>
+
+      <!-- 4. Reorder Point Formula -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-boxes-stacked card-icon"></i>
+          <div>
+            <h3>Inventory Reorder Point (ROP)</h3>
+            <p>Prevent out-of-stock supply chain loss</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Average Daily Unit Velocity</label>
+          <input type="number" id="rop-daily" value="50" oninput="calcROP()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Supplier Lead Time (Days)</label>
+            <input type="number" id="rop-lead" value="15" oninput="calcROP()">
+          </div>
+          <div class="form-group">
+            <label>Safety Stock Buffer (Days)</label>
+            <input type="number" id="rop-buffer" value="7" oninput="calcROP()">
+          </div>
+        </div>
+        <div class="result-box">
+          <span class="res-label">Trigger PO When Inventory Hits</span>
+          <span class="res-val" id="rop-val">1,100 Units</span>
+          <span class="res-sub">Lead Demand: 750 | Safety Buffer: 350</span>
+        </div>
+      </div>
+
+      <!-- 5. E-Commerce SKU Generator -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-barcode card-icon"></i>
+          <div>
+            <h3>Standardized SKU Generator</h3>
+            <p>Amazon, Shopify & Marketplace codes</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Brand Prefix</label>
+            <input type="text" id="sku-brand" value="ASH" oninput="genSKU()">
+          </div>
+          <div class="form-group">
+            <label>Category Code</label>
+            <input type="text" id="sku-cat" value="HOODIE" oninput="genSKU()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Color</label>
+            <input type="text" id="sku-color" value="BLK" oninput="genSKU()">
+          </div>
+          <div class="form-group">
+            <label>Size / Variant</label>
+            <input type="text" id="sku-size" value="XL" oninput="genSKU()">
+          </div>
+        </div>
+        <div class="result-box">
+          <span class="res-label">Formatted SKU String</span>
+          <span class="res-val text-mono" id="sku-val">ASH-HOODIE-BLK-XL-01</span>
+          <button class="btn btn-sm btn-outline mt-2" onclick="copySKU()"><i class="fa-regular fa-copy"></i> Copy SKU</button>
+        </div>
+      </div>
+
+      <!-- 6. Customer Lifetime Value (CLV) -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fa-solid fa-gem card-icon"></i>
+          <div>
+            <h3>Customer Lifetime Value (LTV)</h3>
+            <p>Predict total gross value per customer</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Average Order Value (AOV)</label>
+          <input type="number" id="clv-aov" value="75" oninput="calcCLV()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Purchase Freq / Year</label>
+            <input type="number" id="clv-freq" value="3.2" step="0.1" oninput="calcCLV()">
+          </div>
+          <div class="form-group">
+            <label>Retention Lifespan (Yrs)</label>
+            <input type="number" id="clv-life" value="2.5" step="0.5" oninput="calcCLV()">
+          </div>
+        </div>
+        <div class="result-box">
+          <span class="res-label">Expected LTV Per Customer</span>
+          <span class="res-val" id="clv-val">$600</span>
+          <span class="res-sub">Annual Value: $240 / customer</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>MIT Licensed • Open-Source Project by <a href="https://ashfak.ka36.in/" target="_blank">Ashfak Ali</a> (Enterprise System Administrator & E-Commerce Specialist)</p>
+      <p class="text-muted"><a href="https://github.com/Ashfak-ali/ecommerce-growth-toolkit" target="_blank"><i class="fa-brands fa-github"></i> View Source Code</a> • <a href="https://ka36.in/" target="_blank">Powered by KA36 Growth Engine</a></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
